@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>crm</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+
+  <!--配置中文乱码过滤器-->
+  <filter>
+    <filter-name>EncodingFilter</filter-name>
+    <filter-class>it.com.crm.web.filter.EncodingFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>EncodingFilter</filter-name>
+    <url-pattern>*.do</url-pattern>
+  </filter-mapping>
+  
+  <!--监听器的配置-->
+  <listener>
+    <listener-class>it.com.crm.web.listener.SysInitListener</listener-class>
+  </listener>
+
+  <!--判断用户是否登录的过滤器-->
+  <filter>
+    <filter-name>LoginFiler</filter-name>
+    <filter-class>it.com.crm.web.filter.LoginFiler</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>LoginFiler</filter-name>
+    <url-pattern>*.jsp</url-pattern>
+    <url-pattern>*.do</url-pattern>
+  </filter-mapping>
+
+  <!--和用户相关的servlet-->
+  <servlet>
+    <servlet-name>UserController</servlet-name>
+    <servlet-class>it.com.crm.settings.web.controller.UserController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserController</servlet-name>
+    <url-pattern>/settings/user/login.do</url-pattern>
+  </servlet-mapping>
+
+  <!--和活动相关的servlet-->
+  <servlet>
+    <servlet-name>ActivityController</servlet-name>
+    <servlet-class>it.com.crm.workbench.web.controller.ActivityController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ActivityController</servlet-name>
+    <url-pattern>/workbench/activity/getUserList.do</url-pattern>
+    <url-pattern>/workbench/activity/save.do</url-pattern>
+    <url-pattern>/workbench/activity/update.do</url-pattern>
+    <url-pattern>/workbench/activity/pageList.do</url-pattern>
+    <url-pattern>/workbench/activity/deleteActivity.do</url-pattern>
+    <url-pattern>/workbench/activity/getUserListAndActivity.do</url-pattern>
+    <url-pattern>/workbench/activity/detail.do</url-pattern>
+    <url-pattern>/workbench/activity/getRemarkListByAid.do</url-pattern>
+    <url-pattern>/workbench/activity/deleteRemarkInfoById.do</url-pattern>
+    <url-pattern>/workbench/activity/saveRemark.do</url-pattern>
+    <url-pattern>/workbench/activity/updateRemark.do</url-pattern>
+  </servlet-mapping>
+
+  <!--线索控制器-->
+  <servlet>
+    <servlet-name>ClueController</servlet-name>
+    <servlet-class>it.com.crm.workbench.web.controller.ClueController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ClueController</servlet-name>
+    <url-pattern>/workbench/clue/getUserList.do</url-pattern>
+    <url-pattern>/workbench/clue/saveClue.do</url-pattern>
+    <url-pattern>/workbench/clue/detail.do</url-pattern>
+    <url-pattern>/workbench/clue/showActivityList.do</url-pattern>
+    <url-pattern>/workbench/clue/deleteByIdInRelation.do</url-pattern>
+    <url-pattern>/workbench/clue/findActivityByAName.do</url-pattern>
+    <url-pattern>/workbench/clue/bundBtnSave.do</url-pattern>
+  </servlet-mapping>
+</web-app>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

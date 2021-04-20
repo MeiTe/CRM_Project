@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="it.com.crm.workbench.dao.ClueActivityRelationDao">
+    <insert id="bundSaveActivity">
+        insert into tbl_clue_activity_relation(id,clueId,activityId) values (#{id},#{clueId},#{activityId})
+    </insert>
+
+    <delete id="deleteByIdInRelation">
+        delete from tbl_clue_activity_relation where id=#{id}
+    </delete>
+  	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
