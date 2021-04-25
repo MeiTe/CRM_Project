@@ -46,6 +46,18 @@ public class ClueController extends HttpServlet {
             bundBtnSave(request,response);
         }else if ("/workbench/clue/findActivityByActivityName.do".equals(path)){
             findActivityByActivityName(request,response);
+        }else if ("/workbench/clue/convert.do".equals(path)){
+            convert(request,response);
+        }
+    }
+
+    private void convert(HttpServletRequest request, HttpServletResponse response) {
+        System.out.println("转换");
+        //获取线索的ID
+        String clueId = request.getParameter("clueId");
+        String flag = request.getParameter("flag");
+        if ("a".equals(flag)){
+            System.out.println("需要提交表单。");
         }
     }
 
