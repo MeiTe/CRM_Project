@@ -44,7 +44,20 @@ public class ClueController extends HttpServlet {
             findActivityByAName(request,response);
         }else if ("/workbench/clue/bundBtnSave.do".equals(path)){
             bundBtnSave(request,response);
+        }else if ("/workbench/clue/findActivityByActivityName.do".equals(path)){
+            findActivityByActivityName(request,response);
         }
+    }
+
+    private void findActivityByActivityName(HttpServletRequest request, HttpServletResponse response) {
+        System.out.println("根据用户的关键字模糊查询活动信息，不需要根据用户的ID排除已经绑定的活动");
+        //获取用户输入的关键字
+        String activityName = request.getParameter("activityName");
+        //调用service里面的查询方法
+        ActivityService activityService = (ActivityService) ServiceFactory.getService(new ActivityServiceImpl());
+        List<Activity> activityList=activityService.getActivityListByActivityName(activityName);
+        //然后把活动信息的列表返回到前台
+        PrintJson.printJsonObj(response,activityList);
     }
 
     private void bundBtnSave(HttpServletRequest request, HttpServletResponse response) {

@@ -75,6 +75,7 @@
     <url-pattern>/workbench/clue/deleteByIdInRelation.do</url-pattern>
     <url-pattern>/workbench/clue/findActivityByAName.do</url-pattern>
     <url-pattern>/workbench/clue/bundBtnSave.do</url-pattern>
+    <url-pattern>/workbench/clue/findActivityByActivityName.do</url-pattern>
   </servlet-mapping>
 </web-app>
 
