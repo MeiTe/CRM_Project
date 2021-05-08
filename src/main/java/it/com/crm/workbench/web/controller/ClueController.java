@@ -10,6 +10,7 @@ import it.com.crm.utils.UUIDUtil;
 import it.com.crm.workbench.domain.Activity;
 import it.com.crm.workbench.domain.Clue;
 import it.com.crm.workbench.domain.ClueActivityRelation;
+import it.com.crm.workbench.domain.Tran;
 import it.com.crm.workbench.service.ActivityService;
 import it.com.crm.workbench.service.ClueService;
 import it.com.crm.workbench.service.impl.ActivityServiceImpl;
@@ -51,13 +52,47 @@ public class ClueController extends HttpServlet {
         }
     }
 
-    private void convert(HttpServletRequest request, HttpServletResponse response) {
+    private void convert(HttpServletRequest request, HttpServletResponse response) throws IOException {
         System.out.println("转换");
         //获取线索的ID
         String clueId = request.getParameter("clueId");
         String flag = request.getParameter("flag");
+
+        //线索转换
+        Tran tran = null;
+        //创建人
+        String createBy = ((User) request.getSession().getAttribute("user")).getName();
         if ("a".equals(flag)){
             System.out.println("需要提交表单。");
+            //表示需要进行线索转换
+            tran = new Tran();
+            //获得用户输入的值
+            String  money= request.getParameter("money");
+            String  name= request.getParameter("name");
+            String  expectedDate= request.getParameter("expectedDate");
+            String  stage= request.getParameter("stage");
+            String  activityId= request.getParameter("activityId");
+            String id = UUIDUtil.getUUID();
+            //创建时间
+            String createTime = DateTimeUtil.getSysTime();
+            //然后进行封装
+            tran.setActivityId(activityId);
+            tran.setCreateBy(createBy);
+            tran.setCreateTime(createTime);
+            tran.setId(id);
+            tran.setMoney(money);
+            tran.setName(name);
+            tran.setExpectedDate(expectedDate);
+            tran.setStage(stage);
+
+        }
+        //然后调用service里面的方法
+        ClueService clueService = (ClueService) ServiceFactory.getService(new ClueServiceImpl());
+        Boolean flagTwo=clueService.convert(clueId,tran,createBy);
+        //判断是否转换成功
+        if (flagTwo){
+            //转换成功的话进行重定向
+            response.sendRedirect(request.getContextPath()+"/workbench/clue/index.jsp");
         }
     }
 

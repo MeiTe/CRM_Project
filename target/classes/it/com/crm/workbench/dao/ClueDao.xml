@@ -5,6 +5,10 @@
 
 <mapper namespace="it.com.crm.workbench.dao.ClueDao">
 
+    <select id="findByID" resultType="Clue">
+        select * from tbl_clue where id=#{clueId}
+    </select>
+
     <select id="findActivityIDByclueId" resultType="map">
         select activityId from tbl_clue_activity_relation where clueId=#{clueId}
     </select>

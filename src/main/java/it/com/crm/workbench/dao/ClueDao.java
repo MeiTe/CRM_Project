@@ -10,4 +10,6 @@ public interface ClueDao {
     Clue findOneByID(String id);
 
     List<String> findActivityIDByclueId(String clueId);
+
+    Clue findByID(String clueId);
 }
